@@ -1,14 +1,8 @@
-// src/components/auth/OAuthButtons.js
-import React, { useEffect } from "react";
-import apiService from '../../utils/apiService';
+import React from "react";
+import { authService } from '../../utils/apiService';
 import styles from "./OAuthButtons.module.css";
 
 const OAuthButtons = ({ className, buttonText = "Continue with", colorfulMode = false }) => {
-    // Get OAuth URLs from the centralized service
-    const googleLoginUrl = apiService.getGoogleOAuthUrl();
-    const githubLoginUrl = apiService.getGithubOAuthUrl();
-    const linkedinLoginUrl = apiService.getLinkedinOAuthUrl();
-
     // Colorful palette for the themed mode
     const colors = [
         '#f97316', // Orange
@@ -18,24 +12,24 @@ const OAuthButtons = ({ className, buttonText = "Continue with", colorfulMode = 
         '#10b981', // Green
     ];
 
-    // Log URLs for debugging in development mode
-    useEffect(() => {
-        if (process.env.NODE_ENV === 'development') {
-            console.log("OAuth URLs:", {
-                google: googleLoginUrl,
-                github: githubLoginUrl,
-                linkedin: linkedinLoginUrl
-            });
+    // Handle OAuth clicks
+    const handleGoogleLogin = async () => {
+        try {
+            const response = await authService.getGoogleAuthUrl();
+            window.location.href = response.data.authorize_url;
+        } catch (err) {
+            console.error('Failed to initialize Google login', err);
         }
-    }, [googleLoginUrl, githubLoginUrl, linkedinLoginUrl]);
+    };
 
-    // Log when buttons are clicked
-    const handleOAuthClick = (provider, url) => {
-        if (process.env.NODE_ENV === 'development') {
-            console.log(`${provider} login button clicked`);
-            console.log("Navigating to:", url);
-        }
-        // We don't prevent default because we want the navigation to happen
+    const handleGithubLogin = async () => {
+        // Placeholder for GitHub login
+        alert('GitHub login to be implemented');
+    };
+
+    const handleLinkedInLogin = async () => {
+        // Placeholder for LinkedIn login
+        alert('LinkedIn login to be implemented');
     };
 
     return (
@@ -43,10 +37,9 @@ const OAuthButtons = ({ className, buttonText = "Continue with", colorfulMode = 
             {/* Full buttons with text (shown on larger screens) */}
             <div className={`${styles.oauthContainer} ${className || ''} ${styles.fullButtons} ${colorfulMode ? styles.colorfulTheme : ''}`}>
                 {/* Google Login Button */}
-                <a
-                    href={googleLoginUrl}
+                <button
+                    onClick={handleGoogleLogin}
                     className={`${styles.oauthButton} ${styles.googleButton} ${colorfulMode ? styles.colorfulGoogle : ''}`}
-                    onClick={() => handleOAuthClick('Google', googleLoginUrl)}
                     style={colorfulMode ? { "--button-color": colors[0] } : {}}
                 >
                     <span className={styles.oauthIcon}>
@@ -59,13 +52,12 @@ const OAuthButtons = ({ className, buttonText = "Continue with", colorfulMode = 
                     </span>
                     <span className={styles.buttonText}>{buttonText} Google</span>
                     {colorfulMode && <span className={styles.buttonGlow}></span>}
-                </a>
+                </button>
 
                 {/* GitHub Login Button */}
-                <a
-                    href={githubLoginUrl}
+                <button
+                    onClick={handleGithubLogin}
                     className={`${styles.oauthButton} ${styles.githubButton} ${colorfulMode ? styles.colorfulGithub : ''}`}
-                    onClick={() => handleOAuthClick('GitHub', githubLoginUrl)}
                     style={colorfulMode ? { "--button-color": colors[2] } : {}}
                 >
                     <span className={styles.oauthIcon}>
@@ -78,13 +70,12 @@ const OAuthButtons = ({ className, buttonText = "Continue with", colorfulMode = 
                     </span>
                     <span className={styles.buttonText}>{buttonText} GitHub</span>
                     {colorfulMode && <span className={styles.buttonGlow}></span>}
-                </a>
+                </button>
 
                 {/* LinkedIn Login Button */}
-                <a
-                    href={linkedinLoginUrl}
+                <button
+                    onClick={handleLinkedInLogin}
                     className={`${styles.oauthButton} ${styles.linkedinButton} ${colorfulMode ? styles.colorfulLinkedin : ''}`}
-                    onClick={() => handleOAuthClick('LinkedIn', linkedinLoginUrl)}
                     style={colorfulMode ? { "--button-color": colors[3] } : {}}
                 >
                     <span className={styles.oauthIcon}>
@@ -97,17 +88,16 @@ const OAuthButtons = ({ className, buttonText = "Continue with", colorfulMode = 
                     </span>
                     <span className={styles.buttonText}>{buttonText} LinkedIn</span>
                     {colorfulMode && <span className={styles.buttonGlow}></span>}
-                </a>
+                </button>
             </div>
 
             {/* Icon-only buttons (shown on smaller screens) */}
             <div className={`${styles.iconButtonsContainer} ${className || ''} ${colorfulMode ? styles.colorfulTheme : ''}`}>
                 <div className={styles.iconButtonsWrapper}>
                     {/* Google Icon Button */}
-                    <a
-                        href={googleLoginUrl}
+                    <button
+                        onClick={handleGoogleLogin}
                         className={`${styles.iconButton} ${styles.googleIconButton} ${colorfulMode ? styles.colorfulGoogleIcon : ''}`}
-                        onClick={() => handleOAuthClick('Google', googleLoginUrl)}
                         aria-label={`${buttonText} Google`}
                         style={colorfulMode ? { "--button-color": colors[0] } : {}}
                     >
@@ -118,13 +108,12 @@ const OAuthButtons = ({ className, buttonText = "Continue with", colorfulMode = 
                             />
                         </svg>
                         {colorfulMode && <span className={styles.iconGlow}></span>}
-                    </a>
+                    </button>
 
                     {/* GitHub Icon Button */}
-                    <a
-                        href={githubLoginUrl}
+                    <button
+                        onClick={handleGithubLogin}
                         className={`${styles.iconButton} ${styles.githubIconButton} ${colorfulMode ? styles.colorfulGithubIcon : ''}`}
-                        onClick={() => handleOAuthClick('GitHub', githubLoginUrl)}
                         aria-label={`${buttonText} GitHub`}
                         style={colorfulMode ? { "--button-color": colors[2] } : {}}
                     >
@@ -135,13 +124,12 @@ const OAuthButtons = ({ className, buttonText = "Continue with", colorfulMode = 
                             />
                         </svg>
                         {colorfulMode && <span className={styles.iconGlow}></span>}
-                    </a>
+                    </button>
 
                     {/* LinkedIn Icon Button */}
-                    <a
-                        href={linkedinLoginUrl}
+                    <button
+                        onClick={handleLinkedInLogin}
                         className={`${styles.iconButton} ${styles.linkedinIconButton} ${colorfulMode ? styles.colorfulLinkedinIcon : ''}`}
-                        onClick={() => handleOAuthClick('LinkedIn', linkedinLoginUrl)}
                         aria-label={`${buttonText} LinkedIn`}
                         style={colorfulMode ? { "--button-color": colors[3] } : {}}
                     >
@@ -152,7 +140,7 @@ const OAuthButtons = ({ className, buttonText = "Continue with", colorfulMode = 
                             />
                         </svg>
                         {colorfulMode && <span className={styles.iconGlow}></span>}
-                    </a>
+                    </button>
                 </div>
             </div>
         </>
