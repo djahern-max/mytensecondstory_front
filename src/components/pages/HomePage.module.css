@@ -1,0 +1,314 @@
+/* src/components/pages/HomePage.module.css */
+
+.fullPage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.centeredContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 660px;
+    padding: 0 24px;
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Logo styling with shadow effects */
+.logo {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.logoText {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.my {
+    color: #ec4899;
+    /* Pink */
+    text-shadow: 2px 2px 8px rgba(236, 72, 153, 0.3);
+}
+
+.ten {
+    color: #3c04f6;
+    /* Deep purple */
+    display: inline-block;
+    transform: rotate(-8deg);
+    transform-origin: center;
+    text-shadow: 2px 2px 8px rgba(60, 4, 246, 0.3);
+}
+
+.second {
+    color: #3b82f6;
+    /* Blue */
+    text-shadow: 2px 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.story {
+    color: #ff8a00;
+    /* Bright orange */
+    text-shadow: 2px 2px 8px rgba(255, 138, 0, 0.3);
+}
+
+/* Subtitle styling with enhanced effects */
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 48px;
+    color: #555;
+    position: relative;
+}
+
+.subtitle span {
+    position: relative;
+    display: inline-block;
+}
+
+.subtitle span:first-child {
+    color: #3c04f6;
+    /* Deep purple */
+    font-weight: 600;
+    text-shadow: 1px 1px 4px rgba(60, 4, 246, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.awaits {
+    color: #f62c04;
+    /* Red */
+    font-weight: 600;
+    text-shadow: 1px 1px 4px rgba(246, 44, 4, 0.3);
+    animation: pulse 2s ease-in-out infinite 0.5s;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Features with tilt and shadow */
+.featuresGrid {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 48px;
+    width: 100%;
+    animation: fadeIn 0.8s ease-out 0.3s forwards;
+    opacity: 0;
+}
+
+.featureItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 120px;
+    transition: transform 0.3s ease;
+    transform: rotate(-5deg);
+}
+
+.featureItem:nth-child(1) {
+    transform: rotate(-7deg);
+}
+
+.featureItem:nth-child(2) {
+    transform: rotate(4deg);
+}
+
+.featureItem:nth-child(3) {
+    transform: rotate(-6deg);
+}
+
+.featureItem:hover {
+    transform: translateY(-5px) rotate(0);
+}
+
+.featureIcon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.featureItem:hover .featureIcon {
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.feature1 {
+    background-color: rgba(236, 72, 153, 0.15);
+    /* Pink background */
+    color: #ec4899;
+    /* Pink */
+}
+
+.feature2 {
+    background-color: rgba(60, 4, 246, 0.15);
+    /* Deep purple background */
+    color: #3c04f6;
+    /* Deep purple */
+}
+
+.feature3 {
+    background-color: rgba(255, 138, 0, 0.15);
+    /* Bright orange background */
+    color: #ff8a00;
+    /* Bright orange */
+}
+
+.featureText {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #444;
+    transition: all 0.3s ease;
+}
+
+.featureItem:hover .featureText {
+    transform: scale(1.05);
+}
+
+/* Button styling */
+.buttonGroup {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    width: 100%;
+    max-width: 360px;
+    justify-content: center;
+    animation: fadeIn 0.8s ease-out 0.5s forwards;
+    opacity: 0;
+}
+
+.primaryButton {
+    padding: 12px 24px;
+    background: linear-gradient(to right, #ec4899, #3c04f6);
+    /* Pink to Deep Purple gradient */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.primaryButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.6s ease;
+    z-index: 1;
+}
+
+.primaryButton:hover::before {
+    left: 100%;
+}
+
+.primaryButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.secondaryButton {
+    padding: 12px 24px;
+    background: rgba(59, 130, 246, 0.05);
+    /* Blue background with very low opacity */
+    color: #3b82f6;
+    /* Blue - same as "second" in the logo */
+    border: 2px solid #3b82f6;
+    /* Blue - same as "second" in the logo */
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.secondaryButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* OAuth container */
+.oauthContainer {
+    width: 100%;
+    max-width: 320px;
+    animation: fadeIn 0.8s ease-out 0.7s forwards;
+    opacity: 0;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Media queries */
+@media (max-width: 640px) {
+    .featuresGrid {
+        gap: 16px;
+    }
+
+    .featureIcon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .featureItem {
+        max-width: 100px;
+    }
+
+    .buttonGroup {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .primaryButton,
+    .secondaryButton {
+        width: 100%;
+    }
+}

@@ -1,0 +1,162 @@
+/* src/components/auth/OAuthButtons.module.css */
+
+.oauthContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.oauthButton {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: none;
+    background-color: white;
+    color: #333;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.oauthButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.oauthIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.buttonText {
+    flex: 1;
+    font-weight: 600;
+}
+
+/* Provider-specific styles */
+.googleButton {
+    background: white;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.googleButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #DB4437, #F4B400, #4285F4, #0F9D58);
+    opacity: 0.12;
+    z-index: -1;
+    border-radius: 8px;
+    transition: opacity 0.3s ease;
+}
+
+.googleButton:hover::before {
+    opacity: 0.18;
+}
+
+.githubButton {
+    background: white;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.githubButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #24292e, #6e5494);
+    opacity: 0.12;
+    z-index: -1;
+    border-radius: 8px;
+    transition: opacity 0.3s ease;
+}
+
+.githubButton:hover::before {
+    opacity: 0.18;
+}
+
+.linkedinButton {
+    background: white;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.linkedinButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #0077B5, #00a0dc);
+    opacity: 0.12;
+    z-index: -1;
+    border-radius: 8px;
+    transition: opacity 0.3s ease;
+}
+
+.linkedinButton:hover::before {
+    opacity: 0.18;
+}
+
+/* Colorful theme */
+.colorfulTheme .oauthButton {
+    background-color: white;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.colorfulGoogle,
+.colorfulGithub,
+.colorfulLinkedin {
+    position: relative;
+}
+
+.buttonGlow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, var(--button-color, transparent) 0%, transparent 75%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.colorfulGoogle:hover .buttonGlow,
+.colorfulGithub:hover .buttonGlow,
+.colorfulLinkedin:hover .buttonGlow {
+    opacity: 0.15;
+}
+
+/* Icon-only buttons (for mobile) */
+.iconButtonsContainer {
+    display: none;
+    width: 100%;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 640px) {
+    .fullButtons {
+        display: none;
+    }
+
+    .iconButtonsContainer {
+        display: block;
+    }
+}
